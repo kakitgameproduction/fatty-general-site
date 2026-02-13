@@ -3,54 +3,140 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>下載｜肥仔將軍大冒險</title>
+  <title>肥仔將軍大冒險 Fatty General Adventure</title>
   <style>
     :root{
-      --bg:#0b1220; --card:#121a2b; --text:#f5f7ff; --muted:#b7c0d8;
-      --pri:#4da3ff; --pri2:#2e7dd6; --line:#2a3550;
+      --bg:#0c1426; --card:#131d35; --line:#2a3a63; --text:#eef3ff; --muted:#b7c4e6;
+      --pri:#4da3ff; --pri2:#2f83e0; --ok:#9be39b;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1d2a45 0,#0b1220 60%);color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
-    .wrap{max-width:860px;margin:36px auto;padding:0 16px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
-    h1{margin:0 0 8px;font-size:32px}
-    p{margin:8px 0;color:var(--muted);line-height:1.7}
-    .btns{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700}
-    .btn-primary{background:var(--pri);color:white}
+    body{
+      margin:0;color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1000px 500px at 20% -10%, #22345d 0%, transparent 60%),
+        radial-gradient(900px 500px at 90% -20%, #1a2b4b 0%, transparent 55%),
+        var(--bg);
+      line-height:1.7;
+    }
+    .wrap{max-width:980px;margin:28px auto;padding:0 16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .top{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    h1{margin:0;font-size:32px}
+    .sub{margin:6px 0 0;color:var(--muted)}
+    .btns{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-block;text-decoration:none;padding:11px 16px;border-radius:12px;font-weight:700}
+    .btn-primary{background:var(--pri);color:#fff}
     .btn-primary:hover{background:var(--pri2)}
     .btn-ghost{border:1px solid var(--line);color:var(--text)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-    .item{border:1px solid var(--line);border-radius:12px;padding:14px}
-    .item h3{margin:0 0 6px;font-size:16px}
-    @media (max-width:700px){.grid{grid-template-columns:1fr}}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    .box{border:1px solid var(--line);border-radius:12px;padding:14px}
+    .box h2{margin:0 0 8px;font-size:20px}
+    .box h3{margin:12px 0 6px;font-size:16px}
+    .muted{color:var(--muted)}
+    ul{margin:6px 0 0 18px;padding:0}
+    .tag{display:inline-block;background:#1e2d52;border:1px solid #39518b;color:#cfe0ff;border-radius:999px;padding:4px 10px;font-size:12px;margin-right:6px}
+    .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .shot{width:100%;border-radius:12px;border:1px solid var(--line);background:#0f172a;min-height:140px;object-fit:cover}
+    .note{margin-top:14px;color:var(--ok)}
+    footer{margin:18px 0 8px;color:var(--muted);font-size:14px}
+    @media (max-width:860px){
+      .grid{grid-template-columns:1fr}
+      .shots{grid-template-columns:1fr}
+      h1{font-size:28px}
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <h1>肥仔將軍大冒險</h1>
-      <p>快節奏 2D 動作生存遊戲。閃避飛彈、擊退敵人、挑戰 Boss。</p>
-
-      <div class="btns">
-        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.KakitGameProduction.Fatty_General" target="_blank" rel="noopener">
-          立即下載（Google Play）
-        </a>
-        <a class="btn btn-ghost" href="./index.html">返回首頁</a>
+      <div class="top">
+        <div>
+          <h1>肥仔將軍大冒險<br/>Fatty General Adventure</h1>
+          <p class="sub">快節奏橫向動作生存遊戲 / Fast-paced side-scrolling action survival game</p>
+        </div>
+        <div class="btns">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.KakitGameProduction.Fatty_General" target="_blank" rel="noopener">立即下載 / Download</a>
+          <a class="btn btn-ghost" href="./privacy.html">私隱政策 / Privacy</a>
+        </div>
       </div>
+
+      <p>
+        <span class="tag">Boss Battle</span>
+        <span class="tag">Charge Attack</span>
+        <span class="tag">Mobile Controls</span>
+        <span class="tag">Stage Progression</span>
+      </p>
 
       <div class="grid">
-        <div class="item">
-          <h3>私隱政策</h3>
-          <p><a href="./privacy.html" style="color:#9cc7ff">查看 privacy policy</a></p>
-        </div>
-        <div class="item">
-          <h3>廣告授權檔案</h3>
-          <p><a href="./app-ads.txt" style="color:#9cc7ff">查看 app-ads.txt</a></p>
-        </div>
+        <section class="box">
+          <h2>玩法介紹（中文）</h2>
+          <p class="muted">目標：喺密集飛彈與敵人攻勢中生存，打敗每關 Boss，推進更高關卡。</p>
+
+          <h3>基本操作</h3>
+          <ul>
+            <li>左下按鈕：跳躍</li>
+            <li>右下按鈕：普通攻擊</li>
+            <li>長按攻擊：儲氣，釋放強力招式</li>
+          </ul>
+
+          <h3>核心節奏</h3>
+          <ul>
+            <li>先走位閃避，再用普通攻擊清障</li>
+            <li>留儲氣技打關鍵時機（例如 Boss 壓近）</li>
+            <li>每關難度逐步提升，重點係穩定節奏</li>
+          </ul>
+
+          <h3>進階技巧</h3>
+          <ul>
+            <li>避免長時間停在同一高度</li>
+            <li>先保命再輸出，唔好貪刀</li>
+            <li>Game Over 後可透過 Rewarded 廣告重開（如適用）</li>
+          </ul>
+        </section>
+
+        <section class="box">
+          <h2>How to Play (English)</h2>
+          <p class="muted">Goal: survive waves of bullets/enemies, defeat each stage boss, and push to higher stages.</p>
+
+          <h3>Controls</h3>
+          <ul>
+            <li>Left button: Jump</li>
+            <li>Right button: Normal Attack</li>
+            <li>Hold Attack: Charge and release a stronger move</li>
+          </ul>
+
+          <h3>Core Loop</h3>
+          <ul>
+            <li>Dodge first, attack second</li>
+            <li>Use charge attack at high-pressure moments</li>
+            <li>Difficulty scales gradually per stage</li>
+          </ul>
+
+          <h3>Tips</h3>
+          <ul>
+            <li>Do not stay on one Y-level for too long</li>
+            <li>Prioritize survival over greedy attacks</li>
+            <li>Rewarded ads may be used for continue/restart (if enabled)</li>
+          </ul>
+        </section>
       </div>
+
+      <section class="box" style="margin-top:14px">
+        <h2>遊戲畫面 / Screenshots</h2>
+        <p class="muted">將你圖片放到 <code>images/</code>，再改以下檔名即可。</p>
+        <div class="shots">
+          <img class="shot" src="./screen1.jpg" alt="Screenshot 1">
+
+        </div>
+      </section>
+
+      <p class="note">聯絡 / Contact: kakitgameproduction@gmail.com</p>
     </div>
+
+    <footer>
+      © Kakit Game Production
+    </footer>
   </div>
 </body>
 </html>
