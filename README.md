@@ -29,7 +29,6 @@
 ## 聯絡與回報
 
 - Email：`kakitgameproduction@gmail.com`
-- 問題回報（Issues）：請在此 repo 開 issue
 
 ---
 
