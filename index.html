@@ -3,138 +3,530 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>肥仔將軍大冒險 Fatty General Adventure</title>
+  <title>肥仔將軍大冒險 Big Belly General's Adventure</title>
+  <meta name="description" content="肥仔將軍大冒險是一款快節奏 2D side-scrolling action survival game。閃避飛彈、蓄力斬擊、挑戰 Boss！" />
   <style>
     :root{
-      --bg:#0c1426; --card:#131d35; --line:#2a3a63; --text:#eef3ff; --muted:#b7c4e6;
-      --pri:#4da3ff; --pri2:#2f83e0; --ok:#9be39b;
+      --bg:#08111f;
+      --bg2:#0d1830;
+      --card:#101c33;
+      --card2:#132441;
+      --line:#28436f;
+      --text:#eef4ff;
+      --muted:#b9c8e8;
+      --primary:#4da3ff;
+      --primary2:#79c0ff;
+      --accent:#a8ff00;
+      --accent2:#ffcc42;
+      --shadow:0 24px 60px rgba(0,0,0,.35);
     }
+
     *{box-sizing:border-box}
+
     body{
-      margin:0;color:var(--text);
+      margin:0;
+      color:var(--text);
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       background:
-        radial-gradient(1000px 500px at 20% -10%, #22345d 0%, transparent 60%),
-        radial-gradient(900px 500px at 90% -20%, #1a2b4b 0%, transparent 55%),
-        var(--bg);
+        radial-gradient(900px 420px at 10% -10%, rgba(77,163,255,.26) 0%, transparent 60%),
+        radial-gradient(700px 400px at 100% 0%, rgba(168,255,0,.16) 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
       line-height:1.7;
     }
-    .wrap{max-width:980px;margin:28px auto;padding:0 16px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-    .top{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    h1{margin:0;font-size:32px}
-    .sub{margin:6px 0 0;color:var(--muted)}
-    .btns{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-block;text-decoration:none;padding:11px 16px;border-radius:12px;font-weight:700}
-    .btn-primary{background:var(--pri);color:#fff}
-    .btn-primary:hover{background:var(--pri2)}
-    .btn-ghost{border:1px solid var(--line);color:var(--text)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
-    .box{border:1px solid var(--line);border-radius:12px;padding:14px}
-    .box h2{margin:0 0 8px;font-size:20px}
-    .box h3{margin:12px 0 6px;font-size:16px}
-    .muted{color:var(--muted)}
-    ul{margin:6px 0 0 18px;padding:0}
-    .tag{display:inline-block;background:#1e2d52;border:1px solid #39518b;color:#cfe0ff;border-radius:999px;padding:4px 10px;font-size:12px;margin-right:6px}
-    .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-    .shot{width:100%;border-radius:12px;border:1px solid var(--line);background:#0f172a;min-height:140px;object-fit:cover}
-    .note{margin-top:14px;color:var(--ok)}
-    footer{margin:18px 0 8px;color:var(--muted);font-size:14px}
-    @media (max-width:860px){
-      .grid{grid-template-columns:1fr}
-      .shots{grid-template-columns:1fr}
-      h1{font-size:28px}
+
+    a{color:inherit}
+
+    .wrap{
+      max-width:1180px;
+      margin:32px auto;
+      padding:0 18px 42px;
+    }
+
+    .shell{
+      background:linear-gradient(180deg, rgba(16,28,51,.96), rgba(11,20,36,.96));
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      position:relative;
+      padding:28px;
+      border-bottom:1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(77,163,255,.12), rgba(168,255,0,.06)),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:26px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(77,163,255,.12);
+      border:1px solid rgba(121,192,255,.22);
+      color:var(--primary2);
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:16px 0 10px;
+      font-size:48px;
+      line-height:1.08;
+    }
+
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:19px;
+      max-width:680px;
+    }
+
+    .hero-copy{
+      margin-top:18px;
+      color:#dbe7ff;
+      max-width:700px;
+      font-size:17px;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      padding:13px 18px;
+      border-radius:14px;
+      font-weight:800;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:linear-gradient(180deg, var(--primary2), var(--primary));
+      color:#05101f;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.03);
+      border-color:var(--line);
+      color:var(--text);
+    }
+
+    .hero-art{
+      display:grid;
+      gap:14px;
+    }
+
+    .hero-art img{
+      width:100%;
+      display:block;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0b1424;
+      object-fit:cover;
+    }
+
+    .logo-card{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:18px;
+      aspect-ratio:1 / 1;
+      max-width:420px;
+      margin-left:auto;
+    }
+
+    .logo-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      background:#7ac6ff;
+      border-radius:18px;
+    }
+
+    .content{
+      padding:24px 28px 28px;
+    }
+
+    .tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:22px;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      color:#d8e9ff;
+      background:#16294a;
+      border:1px solid #2b4878;
+    }
+
+    .section{
+      margin-top:26px;
+    }
+
+    .section h2{
+      margin:0 0 12px;
+      font-size:28px;
+    }
+
+    .section p.lead{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .shot-card{
+      background:linear-gradient(180deg, var(--card), var(--card2));
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+    }
+
+    .shot-card img{
+      width:100%;
+      display:block;
+      object-fit:cover;
+      background:#0c1426;
+    }
+
+    .shot-card .caption{
+      padding:12px 14px 14px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .desc-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .box{
+      background:linear-gradient(180deg, var(--card), var(--card2));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .box h3{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    .box p{
+      margin:0 0 12px;
+      color:#e5eeff;
+    }
+
+    .box ul{
+      margin:10px 0 0 18px;
+      padding:0;
+      color:var(--muted);
+    }
+
+    .box li{margin-bottom:8px}
+
+    .store-links{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .store-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      text-decoration:none;
+      padding:16px 18px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+
+    .store-card strong{
+      display:block;
+      font-size:18px;
+    }
+
+    .store-card span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .feedback-form{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field label{
+      font-size:14px;
+      font-weight:700;
+      color:#dce8ff;
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:14px 15px;
+      font:inherit;
+      outline:none;
+    }
+
+    .field input:focus,
+    .field textarea:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 3px rgba(77,163,255,.14);
+    }
+
+    .field textarea{
+      min-height:150px;
+      resize:vertical;
+    }
+
+    .foot{
+      margin-top:24px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+
+    @media (max-width:980px){
+      .hero-grid,.desc-grid,.store-links,.gallery{grid-template-columns:1fr}
+      h1{font-size:38px}
+    }
+
+    @media (max-width:640px){
+      .wrap{margin:18px auto;padding:0 12px 24px}
+      .hero,.content{padding:18px}
+      h1{font-size:32px}
+      .subtitle{font-size:17px}
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="card">
-      <div class="top">
-        <div>
-          <h1>肥仔將軍大冒險<br/>Fatty General Adventure</h1>
-          <p class="sub">快節奏橫向動作生存遊戲 / Fast-paced side-scrolling action survival game</p>
-        </div>
-
-              <section class="box" style="margin-top:14px">
-        <h2>遊戲畫面 / Screenshots</h2>
-          <img class="shot" src="./intro.png" alt="Screenshot 1">
-
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">2D Side-Scrolling Action Survival</div>
+            <h1>肥仔將軍大冒險<br>Big Belly General's Adventure</h1>
+            <p class="subtitle">快節奏橫向動作生存遊戲。閃避飛彈、蓄力斬擊、挑戰 Boss，喺高壓戰場中生存到底。</p>
+            <p class="hero-copy">
+              A fast-paced 2D action survival game where you dodge incoming bullets, charge powerful attacks,
+              fight dangerous enemies, and take on intense boss battles across progressively harder stages.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.KaKitGameProduction.Fatty_General&amp;pcampaignid=web_share" target="_blank" rel="noopener">Google Play 下載</a>
+              <a class="btn btn-secondary" href="./privacy.html">Privacy / 私隱政策</a>
+            </div>
+          </div>
+          <div class="hero-art">
+            <div class="logo-card">
+              <img src="./Photo/Big Belly General's Adventure (5).png" alt="Big Belly General's Adventure icon">
+            </div>
+          </div>
         </div>
       </section>
 
-        <div class="btns">
-          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.KakitGameProduction.Fatty_General" target="_blank" rel="noopener">立即下載 / Download</a>
-          <a class="btn btn-ghost" href="./privacy.html">私隱政策 / Privacy</a>
+      <section class="content">
+        <div class="tag-row">
+          <span class="tag">Boss Battle</span>
+          <span class="tag">Charge Attack</span>
+          <span class="tag">Stage Progression</span>
+          <span class="tag">Action Combat</span>
+          <span class="tag">Mobile Game</span>
+          <span class="tag">Survival Challenge</span>
         </div>
-      </div>
 
-      <p>
-        <span class="tag">Boss Battle</span>
-        <span class="tag">Charge Attack</span>
-        <span class="tag">Mobile Controls</span>
-        <span class="tag">Stage Progression</span>
-      </p>
-
-      <div class="grid">
-        <section class="box">
-          <h2>玩法介紹（中文）</h2>
-          <p class="muted">目標：喺密集飛彈與敵人攻勢中生存，打敗每關 Boss，推進更高關卡。</p>
-
-          <h3>基本操作</h3>
-          <ul>
-            <li>左下按鈕：跳躍</li>
-            <li>右下按鈕：普通攻擊</li>
-            <li>長按攻擊：儲氣，釋放強力招式</li>
-          </ul>
-
-          <h3>核心節奏</h3>
-          <ul>
-            <li>先走位閃避，再用普通攻擊清障</li>
-            <li>留儲氣技打關鍵時機（例如 Boss 壓近）</li>
-            <li>每關難度逐步提升，重點係穩定節奏</li>
-          </ul>
-
-          <h3>進階技巧</h3>
-          <ul>
-            <li>避免長時間停在同一高度</li>
-            <li>先保命再輸出，唔好貪刀</li>
-            <li>Game Over 後可透過 Rewarded 廣告重開（如適用）</li>
-          </ul>
+        <section class="section">
+          <h2>Gameplay Showcase</h2>
+          <p class="lead">宣傳圖、戰鬥節奏、Boss 壓力與特色玩法一頁睇晒。</p>
+          <div class="gallery">
+            <figure class="shot-card">
+              <img src="./Photo/肥仔將軍大冒險 (1).png" alt="Save the World screenshot">
+              <figcaption class="caption">Save the World: survive the final stages and hold your ground under pressure.</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="./Photo/肥仔將軍大冒險 (2).png" alt="Boss unique skills screenshot">
+              <figcaption class="caption">Boss Unique Skills: every boss encounter has different attack timing and threats.</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="./Photo/肥仔將軍大冒險 (3).png" alt="Boss unique weapons screenshot">
+              <figcaption class="caption">Boss Unique Weapons: watch out for unusual projectiles, hazards, and traps.</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="./Photo/肥仔將軍大冒險 (4).png" alt="Special move screenshot">
+              <figcaption class="caption">Special Move: charge up and unleash powerful attacks to break enemy pressure.</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="./Photo/肥仔將軍大冒險 (5).png" alt="Boss challenge screenshot">
+              <figcaption class="caption">Boss Challenge: survive intense encounters and find the perfect moment to counterattack.</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="./Photo/肥仔將軍大冒險.png" alt="Different level screenshot">
+              <figcaption class="caption">Different Levels: battle through varied stages, enemies, weather, and pacing.</figcaption>
+            </figure>
+          </div>
         </section>
 
-        <section class="box">
-          <h2>How to Play (English)</h2>
-          <p class="muted">Goal: survive waves of bullets/enemies, defeat each stage boss, and push to higher stages.</p>
+        <section class="section">
+          <h2>Full Description</h2>
+          <div class="desc-grid">
+            <article class="box">
+              <h3>繁體中文</h3>
+              <p>《肥仔將軍大冒險》係一款快節奏 2D side-scrolling action survival game。你要操控肥仔將軍喺高壓戰場中閃避飛彈、擊退敵人、蓄力斬擊，並喺每次 Boss fight 入面搵到反擊時機！</p>
+              <p>遊戲重點：</p>
+              <ul>
+                <li>快節奏生存戰：閃避、走位、反擊，一秒都唔可以鬆懈</li>
+                <li>蓄力攻擊系統：按住儲力，放手打出強力斬擊</li>
+                <li>Boss 對決：每場 Boss 戰都有節奏變化同特殊攻擊</li>
+                <li>關卡遞進：越後期越刺激，敵人密度與壓力持續上升</li>
+                <li>天氣與場景變化：雨、霧、風等效果帶來唔同戰鬥體感</li>
+                <li>容易上手，持續進步：簡單操作，但要高專注先可以生存更耐</li>
+              </ul>
+              <p style="margin-top:12px">玩法特色：</p>
+              <ul>
+                <li>側向動作（side-scrolling）節奏明快</li>
+                <li>強調 action combat 手感與 survival 決策</li>
+                <li>適合鍾意高壓挑戰、追求操作成長嘅玩家</li>
+              </ul>
+              <p style="margin-top:12px">你可以生存到幾耐？即刻加入《肥仔將軍大冒險》，挑戰極限，擊破 Boss！</p>
+            </article>
 
-          <h3>Controls</h3>
-          <ul>
-            <li>Left button: Jump</li>
-            <li>Right button: Normal Attack</li>
-            <li>Hold Attack: Charge and release a stronger move</li>
-          </ul>
-
-          <h3>Core Loop</h3>
-          <ul>
-            <li>Dodge first, attack second</li>
-            <li>Use charge attack at high-pressure moments</li>
-            <li>Difficulty scales gradually per stage</li>
-          </ul>
-
-          <h3>Tips</h3>
-          <ul>
-            <li>Do not stay on one Y-level for too long</li>
-            <li>Prioritize survival over greedy attacks</li>
-            <li>Rewarded ads may be used for continue/restart (if enabled)</li>
-          </ul>
+            <article class="box">
+              <h3>English</h3>
+              <p>Fatty General's Great Adventure is a fast-paced side-scrolling action combat survival game. Dodge incoming bullets, strike back with precise timing, charge up powerful slashes, and survive intense boss fights.</p>
+              <p>Key Features:</p>
+              <ul>
+                <li>Fast survival gameplay: dodge, reposition, counterattack, and stay focused</li>
+                <li>Charge attack system: hold to charge, release for powerful burst damage</li>
+                <li>Boss fights with patterns: each encounter has unique pacing and special attacks</li>
+                <li>Progressive stages: higher stages bring faster pressure and denser enemy waves</li>
+                <li>Dynamic weather and atmosphere: rain, fog, wind, and visual effects that change combat feel</li>
+                <li>Easy to learn, hard to master: simple controls with skill-based depth</li>
+              </ul>
+              <p style="margin-top:12px">Why you'll like it:</p>
+              <ul>
+                <li>Responsive side-scrolling combat</li>
+                <li>Action combat plus survival decision-making</li>
+                <li>Great for players who enjoy challenging, high-pressure gameplay</li>
+              </ul>
+              <p style="margin-top:12px">How long can you survive? Download Fatty General's Great Adventure and take on the boss today.</p>
+            </article>
+          </div>
         </section>
-      </div>
-      <p class="note">聯絡 / Contact: kakitgameproduction@gmail.com</p>
-    </div>
 
-    <footer>
-      © Kakit Game Production
-    </footer>
+        <section class="section">
+          <h2>Download</h2>
+          <div class="store-links">
+            <a class="store-card" href="https://play.google.com/store/apps/details?id=com.KaKitGameProduction.Fatty_General&amp;pcampaignid=web_share" target="_blank" rel="noopener">
+              <div>
+                <strong>Google Play</strong>
+                <span>Android version available now</span>
+              </div>
+              <span>Open</span>
+            </a>
+            <a class="store-card" href="https://apps.apple.com" target="_blank" rel="noopener">
+              <div>
+                <strong>App Store</strong>
+                <span>iPhone and iPad release page</span>
+              </div>
+              <span>Open</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Feedback / 意見回饋</h2>
+          <p class="lead">有 bug、平衡建議、玩法想法或者合作查詢，都可以直接喺度留言畀我。</p>
+          <div class="box" style="margin-top:18px">
+            <form class="feedback-form" action="https://formsubmit.co/kakitgameproduction@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="Big Belly General's Adventure Website Feedback">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" value="https://kakitgameproduction.github.io/fatty-general-site/">
+
+              <div class="field">
+                <label for="name">Name / 名稱</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required>
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+              </div>
+
+              <div class="field">
+                <label for="message">Message / 意見內容</label>
+                <textarea id="message" name="message" placeholder="Share your feedback, bug report, feature idea, or collaboration request..." required></textarea>
+              </div>
+
+              <div class="cta-row" style="margin-top:4px">
+                <button class="btn btn-primary" type="submit">Submit Feedback</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <div class="foot">
+          <span>聯絡 / Contact: kakitgameproduction@gmail.com</span>
+          <span>© Kakit Game Production</span>
+        </div>
+      </section>
+    </main>
   </div>
 </body>
 </html>
